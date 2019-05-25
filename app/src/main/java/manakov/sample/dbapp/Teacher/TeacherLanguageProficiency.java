@@ -1,4 +1,4 @@
-package manakov.sample.dbapp.Student;
+package manakov.sample.dbapp.Teacher;
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -9,13 +9,13 @@ import manakov.sample.dbapp.Proficiency.Proficiency;
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(
-        tableName = "student_language_proficiency",
-        primaryKeys = {"studentId", "languageId"},
+        tableName = "teacher_language_proficiency",
+        primaryKeys = {"teacherId", "languageId"},
         foreignKeys = {
                 @ForeignKey(
-                        entity = Student.class,
+                        entity = Teacher.class,
                         parentColumns = "id",
-                        childColumns = "studentId",
+                        childColumns = "teacherId",
                         onDelete = CASCADE
                 ),
                 @ForeignKey(
@@ -32,19 +32,20 @@ import static androidx.room.ForeignKey.CASCADE;
                 )
         }
 )
-public class StudentLanguageProficiency {
-    private int studentId;
+
+public class TeacherLanguageProficiency {
+    private int teacherId;
     private int languageId;
     private int proficiencyId;
 
-    public StudentLanguageProficiency(int studentId, int languageId, int proficiencyId) {
-        this.studentId = studentId;
+    public TeacherLanguageProficiency(int teacherId, int languageId, int proficiencyId) {
+        this.teacherId = teacherId;
         this.languageId = languageId;
         this.proficiencyId = proficiencyId;
     }
 
-    public int getStudentId() {
-        return studentId;
+    public int getTeacherId() {
+        return teacherId;
     }
     public int getLanguageId() {
         return languageId;
@@ -53,8 +54,8 @@ public class StudentLanguageProficiency {
         return proficiencyId;
     }
 
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
+    public void setTeacherId(int teacherId) {
+        this.teacherId = teacherId;
     }
     public void setLanguageId(int languageId) {
         this.languageId = languageId;
@@ -63,6 +64,4 @@ public class StudentLanguageProficiency {
         this.proficiencyId = proficiencyId;
     }
 
-
 }
-

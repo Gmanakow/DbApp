@@ -1,4 +1,4 @@
-package manakov.sample.dbapp.Student;
+package manakov.sample.dbapp.Course;
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -9,13 +9,13 @@ import manakov.sample.dbapp.Proficiency.Proficiency;
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(
-        tableName = "student_language_proficiency",
-        primaryKeys = {"studentId", "languageId"},
+        tableName = "course_language_proficiency",
+        primaryKeys = {"courseId"},
         foreignKeys = {
                 @ForeignKey(
-                        entity = Student.class,
+                        entity = Course.class,
                         parentColumns = "id",
-                        childColumns = "studentId",
+                        childColumns = "courseId",
                         onDelete = CASCADE
                 ),
                 @ForeignKey(
@@ -32,19 +32,19 @@ import static androidx.room.ForeignKey.CASCADE;
                 )
         }
 )
-public class StudentLanguageProficiency {
-    private int studentId;
+public class CourseLanguageProficiency {
+    private int courseId;
     private int languageId;
     private int proficiencyId;
 
-    public StudentLanguageProficiency(int studentId, int languageId, int proficiencyId) {
-        this.studentId = studentId;
+    public CourseLanguageProficiency(int courseId, int languageId, int proficiencyId) {
+        this.courseId = courseId;
         this.languageId = languageId;
         this.proficiencyId = proficiencyId;
     }
 
-    public int getStudentId() {
-        return studentId;
+    public int getCourseId() {
+        return courseId;
     }
     public int getLanguageId() {
         return languageId;
@@ -53,8 +53,8 @@ public class StudentLanguageProficiency {
         return proficiencyId;
     }
 
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
     public void setLanguageId(int languageId) {
         this.languageId = languageId;
@@ -65,4 +65,3 @@ public class StudentLanguageProficiency {
 
 
 }
-

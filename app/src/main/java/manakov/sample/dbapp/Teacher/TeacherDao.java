@@ -11,6 +11,9 @@ public interface TeacherDao {
     @Query("Select * from teacher")
     public List<Teacher> getAll();
 
+    @Query("select * from teacher where id =:id Limit 1")
+    public Teacher getTeacherById(int id);
+
     @Query("Delete from teacher")
     public void clear();
 

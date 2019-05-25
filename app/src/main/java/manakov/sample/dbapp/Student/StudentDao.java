@@ -12,6 +12,9 @@ public interface StudentDao {
     @Query("Select * from student")
     public List<Student> getAll();
 
+    @Query("select * from student where id =:id Limit 1")
+    public Student getStudentById(int id);
+
     @Query("Delete from student")
     public void clear();
 

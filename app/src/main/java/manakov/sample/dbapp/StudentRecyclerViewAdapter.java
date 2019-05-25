@@ -46,8 +46,15 @@ public class StudentRecyclerViewAdapter extends RecyclerView.Adapter<StudentRecy
 
             studentFirstNameTextView = view.findViewById(R.id.studentFirstNameTextView);
             studentLastNameTextView  = view.findViewById(R.id.studentLastNameTextView);
+
+            view.setTag(this);
+            view.setOnClickListener(onClickListener);
         }
 
+    }
+
+    public void setOnItemClickListener(View.OnClickListener onClickListener){
+        this.onClickListener = onClickListener;
     }
 
 }
