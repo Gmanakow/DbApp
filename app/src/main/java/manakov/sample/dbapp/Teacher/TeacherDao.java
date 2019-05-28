@@ -14,6 +14,9 @@ public interface TeacherDao {
     @Query("select * from teacher where id =:id Limit 1")
     public Teacher getTeacherById(int id);
 
+    @Query("delete from teacher where id = :id")
+    public void deleteTeacherByTeacherId(int id);
+
     @Query("Delete from teacher")
     public void clear();
 

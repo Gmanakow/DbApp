@@ -1,13 +1,13 @@
-package manakov.sample.dbapp;
+package manakov.sample.dbapp.Student;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import manakov.sample.dbapp.Student.Student;
+import manakov.sample.dbapp.DbApplication;
+import manakov.sample.dbapp.R;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -29,7 +29,9 @@ public class StudentsActivity extends AppCompatActivity {
         application =(DbApplication) getApplication();
 
         list = new ArrayList<>();
-        list = application.getStudents();
+        list.addAll(
+            application.database.studentDao().getAll()
+        );
 
         recyclerView = findViewById(R.id.studentRecyclerView);
         recyclerView.setVisibility(View.VISIBLE);
@@ -42,16 +44,35 @@ public class StudentsActivity extends AppCompatActivity {
                 int position = viewHolder.getAdapterPosition();
                 Intent intent = new Intent(view.getContext(), StudentInfoActivity.class);
                 intent.putExtra("studentId", list.get(position).getId());
-                startActivity(intent);
+                startActivityForResult(intent, DbApplication.studentInfoTag);
             }
         };
 
-
         adapter = new StudentRecyclerViewAdapter(list);
-        recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(onClickListener);
+        recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-
-
     }
+
+    public void onAddStudentClick(View view){
+        Intent intent = new Intent(this, AddStudentActivity.class);
+        startActivityForResult(intent, DbApplication.addStudentTag);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK){
+            list.clear();
+            list.addAll(
+                    application
+                            .database
+                            .studentDao()
+                            .getAll()
+            );
+            adapter.notifyDataSetChanged();
+        }
+    }
+
 }

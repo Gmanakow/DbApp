@@ -5,12 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Student.StudentInfoActivity"
+    tools:context=".Teacher.TeacherInfoActivity"
     android:layout_margin="20dp"
     >
 
     <TextView
-        android:id="@+id/studentInfoFirstNameTextView"
+        android:id="@+id/teacherInfoFirstNameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
@@ -21,7 +21,7 @@
         />
 
     <TextView
-        android:id="@+id/studentInfoLastNameTextView"
+        android:id="@+id/teacherInfoLastNameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
@@ -31,24 +31,13 @@
         app:layout_constraintVertical_bias="0.05"
         />
 
-    <TextView
-        android:id="@+id/studentInfoPaymentFormTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.10"
-        />
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/studentInfoLangProfRecyclerView"
+        android:id="@+id/teacherInfoLangProfRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
 
-        app:layout_constraintTop_toBottomOf="@id/studentInfoPaymentFormTextView"
+        app:layout_constraintTop_toBottomOf="@id/teacherInfoLastNameTextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.05"
         >
@@ -56,39 +45,28 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/studentInfoCoursesRecyclerView"
+        android:id="@+id/teacherInfoCoursesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
 
-        app:layout_constraintTop_toBottomOf="@id/studentInfoLangProfRecyclerView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/teacherInfoLangProfRecyclerView"
+        app:layout_constraintBottom_toTopOf="@id/deleteTeacherButton"
         app:layout_constraintVertical_bias="0.05"
         >
 
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/studentInfoPaymentRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-
-        app:layout_constraintTop_toBottomOf="@id/studentInfoCoursesRecyclerView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.05"
-        >
     </androidx.recyclerview.widget.RecyclerView>
 
     <Button
-        android:id="@+id/deleteStudentButton"
+        android:id="@+id/deleteTeacherButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="1"
-        android:onClick="onDeleteStudentClick"
+
+        android:onClick="onDeleteTeacherClick"
         android:text="Delete"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +74,5 @@
         app:layout_constraintHorizontal_bias="0.5"
 
         />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

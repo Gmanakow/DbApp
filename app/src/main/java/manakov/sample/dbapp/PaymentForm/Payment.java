@@ -1,4 +1,4 @@
-package manakov.sample.dbapp.Teacher;
+package manakov.sample.dbapp.PaymentForm;
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;

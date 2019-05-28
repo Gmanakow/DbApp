@@ -1,20 +1,22 @@
-package manakov.sample.dbapp;
+package manakov.sample.dbapp.Student;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 import androidx.recyclerview.widget.RecyclerView;
-import manakov.sample.dbapp.Student.Student;
+import manakov.sample.dbapp.R;
 
 public class StudentRecyclerViewAdapter extends RecyclerView.Adapter<StudentRecyclerViewAdapter.ViewHolder> {
     private ArrayList<Student> list;
     private View.OnClickListener onClickListener;
+    private Context context;
 
     public StudentRecyclerViewAdapter(ArrayList<Student> list){
         this.list = list;
@@ -22,14 +24,15 @@ public class StudentRecyclerViewAdapter extends RecyclerView.Adapter<StudentRecy
 
     @Override
     public StudentRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+        this.context = parent.getContext();
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.student_view_layout, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(StudentRecyclerViewAdapter.ViewHolder viewHolder, int postition){
-        viewHolder.studentFirstNameTextView.setText(list.get(postition).getFirstName());
-        viewHolder.studentLastNameTextView .setText(list.get(postition).getLastName() );
+    public void onBindViewHolder(final StudentRecyclerViewAdapter.ViewHolder viewHolder,int position){
+        viewHolder.studentFirstNameTextView.setText(list.get(position).getFirstName());
+        viewHolder.studentLastNameTextView .setText(list.get(position).getLastName() );
     }
 
     @Override

@@ -14,6 +14,9 @@ public interface CourseTeacherDao {
     @Query("select * from course_teacher where teacherId=:teacherId Limit 1")
     public CourseTeacher getCourseTeacherByTeacherId(int teacherId);
 
+    @Query("select * from course_teacher where teacherId=:teacherId")
+    public List<CourseTeacher> getCourseTeachersByTeacherId(int teacherId);
+
     @Query("select * from course_teacher where courseId=:courseId Limit 1")
     public CourseTeacher getCourseTeacherByCourseId(int courseId);
 

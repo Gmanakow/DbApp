@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    tools:context=".Course.CourseInfoActivity">
+
+    <TextView
+        android:id="@+id/courseInfoNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0"
+        />
+
+    <TextView
+        android:id="@+id/courseInfoLangLvlLangView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+
+        app:layout_constraintTop_toBottomOf="@id/courseInfoNameTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.01"
+        />
+
+    <TextView
+        android:id="@+id/courseInfoLangLvlProfView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+
+        app:layout_constraintTop_toBottomOf="@id/courseInfoLangLvlLangView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.01"
+        />
+
+    <TextView
+        android:id="@+id/courseInfoTeacherFirstNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+
+        app:layout_constraintTop_toBottomOf="@id/courseInfoLangLvlProfView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.01"
+        />
+
+    <TextView
+        android:id="@+id/courseInfoTeacherLastNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+
+        app:layout_constraintTop_toBottomOf="@id/courseInfoTeacherFirstNameTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.01"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/courseInfoStudentsView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        app:layout_constraintTop_toBottomOf="@id/courseInfoTeacherLastNameTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.05"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

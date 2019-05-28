@@ -2,7 +2,6 @@ package manakov.sample.dbapp.Teacher;
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.Index;
 import manakov.sample.dbapp.Language.Language;
 import manakov.sample.dbapp.Proficiency.Proficiency;
 

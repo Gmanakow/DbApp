@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import manakov.sample.dbapp.Course.CoursesActivity;
+import manakov.sample.dbapp.Student.StudentsActivity;
+import manakov.sample.dbapp.Teacher.TeachersActivity;
 
 public class MainActivity extends AppCompatActivity {
     private DbApplication application;
@@ -14,10 +17,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView studentTextView;
     private TextView teacherTextView;
     private TextView  courseTextView;
-
-    private View.OnClickListener studentOnClickListener;
-    private View.OnClickListener teacherOnClickListener;
-    private View.OnClickListener  courseOnClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,17 +33,33 @@ public class MainActivity extends AppCompatActivity {
         teacherTextView.setVisibility(View.VISIBLE);
          courseTextView.setVisibility(View.VISIBLE);
 
-//        studentTextView;
-
-        studentOnClickListener = new View.OnClickListener() {
+        studentTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("Tag", "click");
                 Intent intent = new Intent(getBaseContext(), StudentsActivity.class);
                 startActivity(intent);
             }
-        };
-        studentTextView.setOnClickListener(studentOnClickListener);
+        });
+
+        teacherTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Tag", "click");
+                Intent intent = new Intent(getBaseContext(), TeachersActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        courseTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Tag", "click");
+                Intent intent = new Intent(getBaseContext(), CoursesActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 

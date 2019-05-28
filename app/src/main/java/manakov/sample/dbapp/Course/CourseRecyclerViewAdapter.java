@@ -1,4 +1,4 @@
-package manakov.sample.dbapp;
+package manakov.sample.dbapp.Course;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import androidx.recyclerview.widget.RecyclerView;
-import manakov.sample.dbapp.Course.Course;
+import manakov.sample.dbapp.R;
 
 public class CourseRecyclerViewAdapter extends RecyclerView.Adapter<CourseRecyclerViewAdapter.ViewHolder> {
     public ArrayList<Course> courses;

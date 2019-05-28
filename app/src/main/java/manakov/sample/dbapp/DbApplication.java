@@ -16,13 +16,20 @@ import manakov.sample.dbapp.Proficiency.Proficiency;
 import manakov.sample.dbapp.Student.Student;
 import manakov.sample.dbapp.Student.StudentLanguageProficiency;
 import manakov.sample.dbapp.Student.StudentPaymentForm;
-import manakov.sample.dbapp.Teacher.Payment;
+import manakov.sample.dbapp.PaymentForm.Payment;
 import manakov.sample.dbapp.Teacher.Teacher;
 import manakov.sample.dbapp.Teacher.TeacherLanguageProficiency;
 
 public class DbApplication extends Application{
 
     public MainDataBase database;
+
+    public static final int addStudentTag = 1;
+    public static final int studentInfoTag = 2;
+    public static final int addTeacherTag = 3;
+    public static final int teacherInfoTag = 4;
+    public static final int addCourseTag = 5;
+    public static final int courseInfoTag = 6;
 
     @Override
     public void onCreate(){

@@ -14,6 +14,9 @@ public interface TeacherLanguageProficiencyDao {
     @Query("select * from teacher_language_proficiency where teacherId =:teacherId Limit 1")
     public TeacherLanguageProficiency getTeacherLanguageProficiencyByTeacherId(int teacherId);
 
+    @Query("select * from teacher_language_proficiency where teacherId=:teacherId")
+    public List<TeacherLanguageProficiency> getTeacherLanguageProficienciesByTeacherId(int teacherId);
+
     @Query("select * from teacher_language_proficiency")
     public List<TeacherLanguageProficiency> getAll();
 

@@ -1,13 +1,17 @@
-package manakov.sample.dbapp;
+package manakov.sample.dbapp.Student;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import manakov.sample.dbapp.Course.Course;
+import manakov.sample.dbapp.Course.CourseInfoActivity;
 import manakov.sample.dbapp.Course.CourseStudent;
+import manakov.sample.dbapp.Course.CourseRecyclerViewAdapter;
+import manakov.sample.dbapp.DbApplication;
+import manakov.sample.dbapp.Language.LanguageProficiencyRecyclerViewAdapter;
 import manakov.sample.dbapp.PaymentForm.PaymentForm;
-import manakov.sample.dbapp.Student.Student;
-import manakov.sample.dbapp.Student.StudentLanguageProficiency;
+import manakov.sample.dbapp.R;
+import manakov.sample.dbapp.PaymentForm.Payment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,11 +31,17 @@ public class StudentInfoActivity extends AppCompatActivity {
 
     private RecyclerView languageProficiencyRecyclerView;
     private LanguageProficiencyRecyclerViewAdapter languageProficiencyRecyclerViewAdapter;
-    private ArrayList<StudentLanguageProficiency> studentLanguageProficiencies;
+    private ArrayList<StudentLanguageProficiency> languageProficiencies;
 
     private RecyclerView courseRecyclerView;
     private CourseRecyclerViewAdapter courseRecyclerViewAdapter;
     private ArrayList<Course> courses;
+
+    private RecyclerView paymentRecycleView;
+    private StudentsPaymentRecyclerViewAdapter paymentRecycleViewAdapter;
+    private ArrayList<Payment> payments;
+
+    private View.OnClickListener onClickListener;
 
 
     @Override
@@ -63,8 +73,10 @@ public class StudentInfoActivity extends AppCompatActivity {
 
         studentInfoPaymentFormTextView.setText(paymentForm.getPaymentForm());
 
-        studentLanguageProficiencies = new ArrayList<>();
-        studentLanguageProficiencies.addAll(
+        //
+
+        languageProficiencies = new ArrayList<>();
+        languageProficiencies.addAll(
                         application.database.studentLanguageProficiencyDao().getStudentLanguageProficienciesByStudentId(studentId)
         );
 
@@ -72,12 +84,11 @@ public class StudentInfoActivity extends AppCompatActivity {
         languageProficiencyRecyclerView.setVisibility(View.VISIBLE);
         languageProficiencyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //onClick
-
-        languageProficiencyRecyclerViewAdapter = new LanguageProficiencyRecyclerViewAdapter(studentLanguageProficiencies, application);
+        languageProficiencyRecyclerViewAdapter = new LanguageProficiencyRecyclerViewAdapter(languageProficiencies, application, student);
         languageProficiencyRecyclerView.setAdapter(languageProficiencyRecyclerViewAdapter);
         languageProficiencyRecyclerViewAdapter.notifyDataSetChanged();
 
+        //
 
         courses = new ArrayList<>();
         ArrayList<CourseStudent> courseStudents = new ArrayList<>();
@@ -96,13 +107,44 @@ public class StudentInfoActivity extends AppCompatActivity {
         courseRecyclerView.setVisibility(View.VISIBLE);
         courseRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+                int position = viewHolder.getAdapterPosition();
+                Intent intent = new Intent(view.getContext(), CourseInfoActivity.class);
+                intent.putExtra("courseId", courses.get(position).getId());
+                startActivity(intent);
+            }
+        };
+
         courseRecyclerViewAdapter = new CourseRecyclerViewAdapter(courses);
+        courseRecyclerViewAdapter.setOnClickListener(onClickListener);
         courseRecyclerView.setAdapter(courseRecyclerViewAdapter);
         courseRecyclerViewAdapter.notifyDataSetChanged();
 
+        //
 
+        payments =
+                (ArrayList<Payment>)
+                application.database.paymentDao().getPaymentsByStudentId(
+                        studentId
+                );
 
+        paymentRecycleView = findViewById(R.id.studentInfoPaymentRecyclerView);
+        paymentRecycleView.setVisibility(View.VISIBLE);
+        paymentRecycleView.setLayoutManager(new LinearLayoutManager(this));
 
+        paymentRecycleViewAdapter = new StudentsPaymentRecyclerViewAdapter(payments, application);
+        paymentRecycleView.setAdapter(paymentRecycleViewAdapter);
+        paymentRecycleViewAdapter.notifyDataSetChanged();
 
     }
+
+    public void onDeleteStudentClick(View view){
+        application.database.studentDao().deleteStudentByStudentId(studentId);
+        setResult(RESULT_OK);
+        finish();
+    }
+
 }
