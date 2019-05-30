@@ -53,10 +53,6 @@ public class ShowPaymentsByDateActivity extends AppCompatActivity {
             Log.d("err", e.getLocalizedMessage());
         }
 
-        for (int i = 0; i< payments.size(); i++){
-            Log.d("payment", payments.get(i).getDate() + " ");
-        }
-
         paymentRecycleView = findViewById(R.id.paymentsByDateRecyclerView);
         paymentRecycleView.setVisibility(View.VISIBLE);
         paymentRecycleView.setLayoutManager(new LinearLayoutManager(this));

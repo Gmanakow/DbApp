@@ -57,9 +57,6 @@ public class AddStudentCourseActivity extends AppCompatActivity {
         }
 
         list = substractById(addList, addList2);
-        for (int i = 0; i< list.size(); i++){
-            Log.d("aaaaaaaaaaaaaaa", list.get(i).getFirstName()+"");
-        }
 
         recyclerView = findViewById(R.id.studentCourseRecyclerView);
         recyclerView.setVisibility(View.VISIBLE);

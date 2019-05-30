@@ -41,13 +41,11 @@ public class DbApplication extends Application{
             super.onCreate(db);
             String name;
 
-            Log.i("MainActivity", "onCreateaaaaaaaaaaa");
         }
 
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
-            Log.i("MainActivity", "onOpenedaaaaaaaaaaaaa");
 
             db.execSQL("drop trigger if exists addPaymentTrigger");
             db.execSQL("drop trigger if exists  addStudentCourseTrigger");
