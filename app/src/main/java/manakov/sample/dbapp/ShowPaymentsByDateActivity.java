@@ -33,8 +33,6 @@ public class ShowPaymentsByDateActivity extends AppCompatActivity {
         String firstDate = intent.getExtras().getString("first");
         String secondDate = intent.getExtras().getString("second");
 
-        secondDate = "0 or 1=1";
-
         ArrayList<Payment> payments = new ArrayList<>();
         try {
             payments.addAll(
