@@ -25,4 +25,7 @@ public interface CourseTeacherDao {
 
     @Query("Delete from course_teacher")
     public void clear();
+
+    @Query("delete from course_teacher where courseId=:courseId")
+    public void deleteCourseTeacherByCourseId(int courseId);
 }

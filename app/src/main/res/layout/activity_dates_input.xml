@@ -6,69 +6,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20dp"
-    tools:context=".MainActivity">
+    tools:context=".DatesInputActivity">
 
     <TextView
-        android:id="@+id/studentTextView"
+        android:id="@+id/firstDateTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text = "Наши студенты"
         android:textSize="20sp"
-
+        android:text="First Date:"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/firstDateInputTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/firstDateTextView"
+        app:layout_constraintStart_toStartOf="parent"
         />
 
     <TextView
-        android:id="@+id/teacherTextView"
+        android:id="@+id/secondDateTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text = "Наши учителя"
         android:textSize="20sp"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.2"
+        android:text="Second Date"
+        app:layout_constraintTop_toBottomOf="@id/firstDateInputTextView"
+        app:layout_constraintStart_toStartOf="parent"
         />
 
-    <TextView
-        android:id="@+id/courseTextView"
+    <EditText
+        android:id="@+id/secondDateInputTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text = "Наши курсы"
         android:textSize="20sp"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.3"
-        />
-
-    <TextView
-        android:id="@+id/paymentsTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text = "Платежи"
-        android:textSize="20sp"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintTop_toBottomOf="@id/secondDateTextView"
+        app:layout_constraintStart_toStartOf="parent"
         />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/getPaymentsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        android:onClick="onClick"
-
-        app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-         />
+        app:layout_constraintVertical_bias="1"
+        android:onClick="onGetPayments"
+        android:text="Get Payments"
 
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Teacher.AddTeacherActivity"></activity>
+        <activity android:name=".Teacher.AddTeacherCourseActivity"></activity>
+        <activity android:name=".ShowPaymentsByDateActivity" />
+        <activity android:name=".DatesInputActivity" />
+        <activity android:name=".PaymentsActivity" />
+        <activity android:name=".Student.AddStudentCourseActivity" />
+        <activity android:name=".Course.AddCourseActivity" />
+        <activity android:name=".Teacher.AddTeacherActivity" />
         <activity android:name=".Student.AddStudentActivity" />
         <activity android:name=".Course.CourseInfoActivity" />
         <activity android:name=".Course.CoursesActivity" />

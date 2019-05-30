@@ -38,7 +38,7 @@ public class StudentInfoActivity extends AppCompatActivity {
     private ArrayList<Course> courses;
 
     private RecyclerView paymentRecycleView;
-    private StudentsPaymentRecyclerViewAdapter paymentRecycleViewAdapter;
+    private StudentPaymentRecyclerViewAdapter paymentRecycleViewAdapter;
     private ArrayList<Payment> payments;
 
     private View.OnClickListener onClickListener;
@@ -135,7 +135,7 @@ public class StudentInfoActivity extends AppCompatActivity {
         paymentRecycleView.setVisibility(View.VISIBLE);
         paymentRecycleView.setLayoutManager(new LinearLayoutManager(this));
 
-        paymentRecycleViewAdapter = new StudentsPaymentRecyclerViewAdapter(payments, application);
+        paymentRecycleViewAdapter = new StudentPaymentRecyclerViewAdapter(payments, application);
         paymentRecycleView.setAdapter(paymentRecycleViewAdapter);
         paymentRecycleViewAdapter.notifyDataSetChanged();
 

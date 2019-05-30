@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView studentTextView;
     private TextView teacherTextView;
     private TextView  courseTextView;
+    private TextView paymentsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +29,16 @@ public class MainActivity extends AppCompatActivity {
         studentTextView = findViewById(R.id.studentTextView);
         teacherTextView = findViewById(R.id.teacherTextView);
          courseTextView = findViewById(R.id. courseTextView);
+         paymentsTextView = findViewById(R.id.paymentsTextView);
 
         studentTextView.setVisibility(View.VISIBLE);
         teacherTextView.setVisibility(View.VISIBLE);
          courseTextView.setVisibility(View.VISIBLE);
+         paymentsTextView.setVisibility(View.VISIBLE);
 
         studentTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Tag", "click");
                 Intent intent = new Intent(getBaseContext(), StudentsActivity.class);
                 startActivity(intent);
             }
@@ -45,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         teacherTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Tag", "click");
                 Intent intent = new Intent(getBaseContext(), TeachersActivity.class);
                 startActivity(intent);
             }
@@ -54,8 +55,15 @@ public class MainActivity extends AppCompatActivity {
         courseTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Tag", "click");
                 Intent intent = new Intent(getBaseContext(), CoursesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        paymentsTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), PaymentsActivity.class);
                 startActivity(intent);
             }
         });
@@ -66,4 +74,5 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view){
         application.fillDB();
     }
+
 }

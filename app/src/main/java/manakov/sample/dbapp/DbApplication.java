@@ -5,7 +5,10 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 import manakov.sample.dbapp.Course.Course;
 import manakov.sample.dbapp.Course.CourseLanguageProficiency;
 import manakov.sample.dbapp.Course.CourseStudent;
@@ -30,10 +33,86 @@ public class DbApplication extends Application{
     public static final int teacherInfoTag = 4;
     public static final int addCourseTag = 5;
     public static final int courseInfoTag = 6;
+    public static final int courseAddDataTag = 7;
+
+    RoomDatabase.Callback callback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            String name;
+
+            Log.i("MainActivity", "onCreateaaaaaaaaaaa");
+        }
+
+        @Override
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
+            Log.i("MainActivity", "onOpenedaaaaaaaaaaaaa");
+
+            db.execSQL("drop trigger if exists addPaymentTrigger");
+            db.execSQL("drop trigger if exists  addStudentCourseTrigger");
+
+            db.execSQL(
+                    "create trigger if not exists addPaymentTrigger after insert on payment"+
+                            " begin "+
+                            " delete from payment where studentId in " +
+                            "(" +
+                            "select studentId from student_paymentForm where paymentFormId = 2" +
+                            ");"+
+                            " end "
+            );
+
+            db.execSQL(
+                    "create trigger if not exists addStudentCourseTrigger after insert on course_student" +
+                            " begin" +
+                            " delete from course_student where courseId in " +
+                            "(" +
+                                "select courseId from " +
+
+                                "(" +
+                                " select courseId, studentId, courseProf, studentProf from" +
+
+                                "(" +
+                                    "Select course_language_proficiency.courseId as courseId," +
+                                            "student_language_proficiency.studentId as studentId, " +
+                                                " course_language_proficiency.proficiencyId as courseProf," +
+                                                        " student_language_proficiency.proficiencyId as studentProf " +
+                                                             " from course_language_proficiency join student_language_proficiency" +
+                                                                " on course_language_proficiency.languageId = student_language_proficiency.languageId" +
+                                ")" +
+                                "where courseId = New.courseId and studentId = New.studentId and studentProf != (courseProf - 1)  " +
+
+                                ")" +
+                            ")" +
+                            "and studentId in " +
+                            "(" +
+                                "select studentId from " +
+
+                                "(" +
+                                " select courseId, studentId, courseProf, studentProf from" +
+
+                                "(" +
+                                    "Select course_language_proficiency.courseId as courseId," +
+                                            "student_language_proficiency.studentId as studentId, " +
+                                                " course_language_proficiency.proficiencyId as courseProf," +
+                                                    " student_language_proficiency.proficiencyId as studentProf " +
+                                                        " from course_language_proficiency join student_language_proficiency" +
+                                                            " on course_language_proficiency.languageId = student_language_proficiency.languageId" +
+                                ")" +
+                                "where courseId = New.courseId and studentId = New.studentId and studentProf != (courseProf - 1) " +
+
+                                ")" +
+                            ");" +
+                            " end"
+            );
+        }
+    };
 
     @Override
     public void onCreate(){
         super.onCreate();
+
+
 
         database = Room.databaseBuilder(
                 getApplicationContext(),
@@ -42,7 +121,9 @@ public class DbApplication extends Application{
         )
                 .allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
+                .addCallback(callback)
                 .build();
+
     }
 
     public ArrayList<Language> getLanguages(){
@@ -292,6 +373,7 @@ public class DbApplication extends Application{
                                 database.languageDao().getAll().get(2).getId(),
                                 database.proficiencyDao().getAll().get(2).getId()
                         )
+
                 );
     }
     public void fillCourseTeacher(){
@@ -429,12 +511,50 @@ public class DbApplication extends Application{
                         new Payment(
                                 database.studentDao().getAll().get(0).getId(),
                                 database.courseDao().getAll().get(0).getId(),
-                                1500
+                                1500,
+                                1
+                        ),
+                        new Payment(
+                                database.studentDao().getAll().get(1).getId(),
+                                database.courseDao().getAll().get(0).getId(),
+                                500,
+                                2
+                        ),
+                        new Payment(
+                                database.studentDao().getAll().get(2).getId(),
+                                database.courseDao().getAll().get(1).getId(),
+                                500,
+                                3
                         ),
                         new Payment(
                                 database.studentDao().getAll().get(3).getId(),
                                 database.courseDao().getAll().get(1).getId(),
-                                500
+                                1100,
+                                4
+                        ),
+                        new Payment(
+                                database.studentDao().getAll().get(4).getId(),
+                                database.courseDao().getAll().get(2).getId(),
+                                1000,
+                                5
+                        ),
+                        new Payment(
+                                database.studentDao().getAll().get(5).getId(),
+                                database.courseDao().getAll().get(2).getId(),
+                                1000,
+                                6
+                        ),
+                        new Payment(
+                                database.studentDao().getAll().get(6).getId(),
+                                database.courseDao().getAll().get(3).getId(),
+                                700,
+                                7
+                        ),
+                        new Payment(
+                                database.studentDao().getAll().get(7).getId(),
+                                database.courseDao().getAll().get(3).getId(),
+                                800,
+                                8
                         )
                 );
     }
@@ -503,6 +623,7 @@ public class DbApplication extends Application{
             }
         }
     }
+
 
 
 

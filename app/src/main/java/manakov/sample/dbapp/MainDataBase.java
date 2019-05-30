@@ -45,7 +45,7 @@ import manakov.sample.dbapp.Teacher.TeacherLanguageProficiencyDao;
             StudentPaymentForm.class,
             Payment.class
         },
-        version = 16,
+        version = 18,
         exportSchema = false
 )
 public abstract class MainDataBase extends RoomDatabase {

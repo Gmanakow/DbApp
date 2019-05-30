@@ -7,6 +7,7 @@ import manakov.sample.dbapp.Course.Course;
 import manakov.sample.dbapp.Course.CoursesRecyclerViewAdapter;
 import manakov.sample.dbapp.DbApplication;
 import manakov.sample.dbapp.R;
+import manakov.sample.dbapp.Teacher.AddTeacherActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,7 +47,7 @@ public class CoursesActivity extends AppCompatActivity {
                 int position = viewHolder.getAdapterPosition();
                 Intent intent = new Intent(view.getContext(), CourseInfoActivity.class);
                 intent.putExtra("courseId", list.get(position).getId());
-                startActivity(intent);
+                startActivityForResult(intent, DbApplication.courseInfoTag);
             }
         };
 
@@ -55,4 +56,27 @@ public class CoursesActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
+
+    public void onAddCourseClick(View view){
+        Intent intent = new Intent(this, AddCourseActivity.class);
+        startActivityForResult(intent, DbApplication.addCourseTag);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK){
+            list.clear();
+            list.addAll(
+                    application
+                            .database
+                            .courseDao()
+                            .getAll()
+            );
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+
 }

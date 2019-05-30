@@ -12,24 +12,24 @@ import manakov.sample.dbapp.DbApplication;
 import manakov.sample.dbapp.R;
 import manakov.sample.dbapp.PaymentForm.Payment;
 
-public class StudentsPaymentRecyclerViewAdapter extends RecyclerView.Adapter<StudentsPaymentRecyclerViewAdapter.ViewHolder> {
+public class StudentPaymentRecyclerViewAdapter extends RecyclerView.Adapter<StudentPaymentRecyclerViewAdapter.ViewHolder> {
     private ArrayList<Payment> payments;
     private View.OnClickListener onClickListener;
     private DbApplication application;
 
-    public StudentsPaymentRecyclerViewAdapter(ArrayList<Payment> payments, DbApplication application){
+    public StudentPaymentRecyclerViewAdapter(ArrayList<Payment> payments, DbApplication application){
         this.payments = payments;
         this.application = application;
     }
 
     @Override
-    public StudentsPaymentRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public StudentPaymentRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.student_payment_view_item_layout, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(StudentsPaymentRecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(StudentPaymentRecyclerViewAdapter.ViewHolder holder, int position) {
         holder.studentPaymentCourseNameTextView.setText(
             application.database.courseDao().getCourseById(
                     payments.get(position).getCourseId()

@@ -5,15 +5,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import manakov.sample.dbapp.DbApplication;
 import manakov.sample.dbapp.R;
+import manakov.sample.dbapp.Student.AddStudentCourseActivity;
 import manakov.sample.dbapp.Student.Student;
 import manakov.sample.dbapp.Student.StudentInfoActivity;
 import manakov.sample.dbapp.Student.StudentRecyclerViewAdapter;
+import manakov.sample.dbapp.Teacher.AddTeacherCourseActivity;
 import manakov.sample.dbapp.Teacher.Teacher;
 import manakov.sample.dbapp.Teacher.TeacherInfoActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
 
@@ -153,7 +154,30 @@ public class CourseInfoActivity extends AppCompatActivity {
                         )
                 );
             }
+
+            try {
+                final Teacher teacher = application.database.teacherDao().getTeacherById(
+                        application.database.courseTeacherDao().getCourseTeacherByCourseId(courseId).getTeacherId()
+                );
+
+                courseInfoTeacherFirstNameTextView.setText(teacher.getFirstName());
+                courseInfoTeacherLastNameTextView.setText(teacher.getLastName());
+            } catch (Exception e){}
+
+
             adapter.notifyDataSetChanged();
         }
+    }
+
+    public void onAddStudentClick(View view){
+        Intent intent = new Intent(this, AddStudentCourseActivity.class);
+        intent.putExtra("courseId", courseId);
+        startActivityForResult(intent, DbApplication.courseAddDataTag);
+    }
+
+    public void onAddTeacherClick(View view){
+        Intent intent = new Intent(this, AddTeacherCourseActivity.class);
+        intent.putExtra("courseId", courseId);
+        startActivityForResult(intent, DbApplication.courseAddDataTag);
     }
 }

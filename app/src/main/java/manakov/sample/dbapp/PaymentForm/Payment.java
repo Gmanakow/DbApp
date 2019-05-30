@@ -38,11 +38,13 @@ public class Payment {
     private int studentId;
     private int courseId;
     private int amount;
+    private int date;
 
-    public Payment(int studentId, int courseId, int amount) {
+    public Payment(int studentId, int courseId, int amount, int date) {
         this.studentId = studentId;
         this.courseId = courseId;
         this.amount = amount;
+        this.date = date;
     }
 
     public int getId() {
@@ -69,5 +71,13 @@ public class Payment {
     }
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public int getDate() {
+        return date;
     }
 }
